@@ -91,7 +91,9 @@ okBtn.addEventListener("click", function () {
 });
 
 // close popup and clear data
-cancelBtn.addEventListener("click", function () {});
+cancelBtn.addEventListener("click", function () {
+  closePopup();
+});
 
 // Get current date
 const currentDate = function () {
