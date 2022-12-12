@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <title>Save, Save, Save</title>
+  </head>
+  <body>
+    <main>
+      <!-- Top section -->
+      <section class="top">
+        <div class="heading__1">Save, Save, Save</div>
+        <div class="updates">
+          <div>
+            <label class="sm-label">month</label>
+            <select class="bg-label select">
+              <option value="nov">November</option>
+              <option value="dec">December</option>
+              <option value="mar">March</option>
+              <option value="apr">April</option>
+              <option value="may">May</option>
+              <option value="jun">June</option>
+            </select>
+          </div>
+          <div class="detail_box">
+            <label class="sm-label">income</label>
+            <label class="bg-label" id="totalIncome">0</label>
+          </div>
+          <div class="detail_box">
+            <label class="sm-label">expense</label>
+            <label class="bg-label" id="totalExpenses">0</label>
+          </div>
+        </div>
+      </section>
+
+      <!-- Actions sections -->
+      <section class="cards">
+        <!-- <div class="card">
+          <p class="name">Name</p>
+          <p class="date">27/12/2022</p>
+          <p class="amount">- 30</p>
+        </div> -->
+      </section>
+    </main>
+    <!-- Add button -->
+    <button class="add__btn1 add__btn-1">Save</button>
+    <button class="add__btn">+</button>
+    <button class="add__btn1 add__btn-2">Reset</button>
+
+    <div class="add_card hidden">
+      <div class="container">
+        <div class="add_info_card">
+          <select name="type" id="type">
+            <option value="earned">Income</option>
+            <option value="spent">Expense</option>
+          </select>
+          <input type="date" id="date" />
+          <input id="money_added" type="number" placeholder="$0.00" />
+          <input id="use" type="text" placeholder="use..." />
+        </div>
+        <div class="buttons">
+          <button class="btn okBtn">OK</button>
+          <button class="btn cancelBtn">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add javascript file -->
+    <script src="index.js"></script>
+  </body>
+</html>

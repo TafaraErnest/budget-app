@@ -1,0 +1,315 @@
+:root {
+  --main-color: #17a2b8;
+  --main-font: sans-serif;
+  --main-text-color: #fff;
+  --gradient: linear-gradient(
+    to right bottom,
+    var(--main-color),
+    rgba(0, 0, 0, 0.7)
+  );
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: inherit;
+}
+
+body {
+  font-size: 1.6rem;
+  box-sizing: border-box;
+  font-family: var(--main-font);
+}
+
+main {
+  min-height: 100vh;
+  position: absolute;
+  width: 100%;
+}
+
+.top {
+  position: relative;
+  height: 50vh;
+  color: var(--main-text-color);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  background-image: var(--gradient);
+}
+
+.heading__1 {
+  font-size: 8rem;
+  font-weight: 100;
+  text-transform: uppercase;
+  margin: auto 0;
+}
+
+.updates {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1rem;
+  align-items: flex-end;
+}
+
+.sm-label {
+  font-size: 1.6rem;
+  text-transform: uppercase;
+}
+
+.bg-label {
+  font-size: 3.5rem;
+}
+
+.select {
+  font-size: 3rem;
+  background-color: var(--main-color);
+  border: none;
+  color: inherit;
+}
+
+.cards {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin: 2rem 10%;
+  grid-gap: 2rem;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  color: var(--main-text-color);
+  padding: 2rem;
+  background-image: var(--gradient);
+  box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-0.2rem) scale(1.02);
+}
+
+.name {
+  text-transform: uppercase;
+  font-size: 1.8rem;
+  margin-right: 1rem;
+}
+
+.date {
+  font-size: 1.5rem;
+  margin-right: auto;
+}
+
+.amount {
+  font-size: 1.8rem;
+}
+
+.add__btn,
+.add__btn1 {
+  position: fixed;
+  top: 85vh;
+  left: 50%;
+  transform: translateX(-50%);
+  border: none;
+  background-color: var(--main-color);
+  padding: 1.5rem 2rem;
+  box-shadow: 0 1rem 1.5rem rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+  font-size: 3rem;
+  color: var(--main-text-color);
+  cursor: pointer;
+  transition: all 0.2s;
+  z-index: 100;
+}
+
+.add__btn-1 {
+  left: 40%;
+  padding: 1rem 1.5rem;
+}
+
+.add__btn-2 {
+  left: 60%;
+  padding: 1rem 1.5rem;
+}
+
+.add__btn:hover {
+  box-shadow: 0 1.5rem 2rem rgba(0, 0, 0, 0.7);
+  padding: 1.5rem 3rem;
+}
+
+.add_card {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 1000;
+  transition: all 0.3s;
+}
+
+.container {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--main-color);
+  background-color: var(--main-text-color);
+  padding: 1rem;
+  border-radius: 5px;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.7);
+  border: 3px solid var(--main-color);
+  margin-bottom: 15rem;
+  transition: all 0.2s 0.3s;
+}
+
+.add_info_card {
+  transition: all 0.5s;
+  width: 100%;
+  display: grid;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#type,
+#date,
+#use,
+#money_added {
+  width: 22%;
+  background-color: var(--main-text-color);
+  color: var(--main-color);
+  border: none;
+  border: 2px var(--main-color) solid;
+  padding: 1rem;
+  font-size: 1.8rem;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.7);
+}
+
+#type option {
+  padding: 1rem 2rem;
+}
+
+.buttons {
+  margin-top: 1rem;
+}
+
+.btn {
+  cursor: pointer;
+  font-size: 1.8rem;
+  border: 2px solid var(--main-color);
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  color: var(--main-text-color);
+  background-color: var(--main-color);
+  transition: all 0.2s;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.7);
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+.okBtn {
+  margin-right: 2rem;
+}
+
+.hidden {
+  opacity: 0;
+  display: none;
+}
+
+/* At 1200px width */
+@media (max-width: 1200px) {
+  .heading__1 {
+    font-size: 6rem;
+  }
+
+  .cards {
+    margin: 2rem 5%;
+  }
+
+  .container {
+    width: 90%;
+  }
+}
+
+/* At 600px width */
+@media (max-width: 600px) {
+  .heading__1 {
+    font-size: 4rem;
+  }
+
+  .cards {
+    margin: 2rem 10%;
+    grid-template-columns: 1fr;
+  }
+
+  .sm-label {
+    font-size: 1.2rem;
+  }
+
+  .bg-label {
+    font-size: 2.5rem;
+  }
+
+  .container {
+    width: 100%;
+  }
+
+  .select {
+    font-size: 2rem;
+  }
+
+  .add_info_card {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #type,
+  #date,
+  #use,
+  #money_added {
+    width: 90%;
+    margin-bottom: 1rem;
+  }
+}
+
+/* At 400px width */
+@media (max-width: 400px) {
+  .heading__1 {
+    font-size: 3rem;
+  }
+
+  .cards {
+    margin: 2rem 2%;
+  }
+
+  .sm-label {
+    font-size: 1rem;
+  }
+
+  .bg-label {
+    font-size: 2rem;
+  }
+
+  .select {
+    font-size: 1.5rem;
+  }
+
+  .add__btn {
+    padding: 1rem 1.5rem;
+  }
+
+  .add__btn:hover {
+    padding: 1rem 2rem;
+  }
+}
