@@ -110,20 +110,9 @@ main {
   font-size: 1.8rem;
 }
 
-.addBtns {
-  position: fixed;
-  top: 90%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-.addBtn {
-  margin: 0 2rem;
-}
-
-.addBtn:hover {
-  padding: 1.2rem 3rem;
+a {
+  text-decoration: none;
+  color: var(--main-text-color);
 }
 
 .add_card {
@@ -193,12 +182,34 @@ main {
   border-radius: 5px;
   color: var(--main-text-color);
   background-color: var(--main-color);
-  transition: all 0.2s;
+  transition: all 0.1s;
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.7);
 }
 
 .btn:hover {
   transform: scale(1.05);
+}
+
+.addBtns {
+  position: fixed;
+  top: 90%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.addBtn {
+  margin: 0 2rem;
+}
+
+.addBtn:hover {
+  padding: 1.2rem 3rem;
+  transform: scale(1.05) translateY(-0.5rem);
+}
+
+.addBtn:hover:focus {
+  padding: 1rem 2rem;
+  transform: scale(1.05) translateY(0);
 }
 
 .okBtn {
@@ -245,7 +256,7 @@ main {
   }
 
   .container {
-    width: 100%;
+    width: 60%;
   }
 
   .select {
@@ -256,13 +267,16 @@ main {
     flex-direction: column;
     align-items: center;
   }
-
   #type,
   #date,
   #use,
   #money_added {
-    width: 90%;
+    width: 70%;
     margin-bottom: 1rem;
+  }
+
+  #type {
+    width: 75%;
   }
 }
 

@@ -1,6 +1,6 @@
 // Defining variables
 const addBtn = document.querySelector(".addBtn");
-const addCardPage = document.querySelector(".add_card");
+const addCardPage = document.querySelector(".cards");
 const cancelBtn = document.querySelector(".cancelBtn");
 const okBtn = document.querySelector(".okBtn");
 const type = document.querySelector("#type");
@@ -9,96 +9,89 @@ const moneyAdded = document.querySelector("#money_added");
 const use = document.querySelector("#use");
 const totalIncome = document.querySelector("#totalIncome");
 const totalExpenses = document.querySelector("#totalExpenses");
-const cards = document.querySelector(".cards");
-const saveBtn = document.querySelector(".saveBtn");
+const popup = document.querySelector(".add_card");
 const resetBtn = document.querySelector(".resetBtn");
 
-// saving data on local storage
-let dataArray = [];
-
-// object definition
-/////////////////////////////////////////////////////////////////////////
-class Info {
-  constructor(inputType, inputDate, inputVal, inputUse, income, expense) {
-    this.inputType = inputType;
-    this.inputDate = inputDate;
-    this.inputVal = inputVal;
-    this.inputUse = inputUse;
+// data object definition
+class cardData {
+  constructor(type, date, amount, income, expenses) {
+    this.type = type;
+    this.date = date;
+    this.amount = amount;
     this.income = income;
-    this.expense = expense;
+    this.expenses = expenses;
   }
-  // changing the value of total income
-  addIncome() {
-    totalIncome.innerHTML = this.income + this.inputVal;
+
+  updateTotals() {
+    if (this.type === "earned") {
+      totalIncome.innerHTML = +this.amount + +totalIncome.innerHTML;
+      this.income = this.income + this.amount;
+    } else {
+      totalExpenses.innerHTML = +this.amount + +totalExpenses.innerHTML;
+      this.expenses = this.expenses + this.amount;
+    }
   }
-  // changing the value of total expenses
-  addExpense() {
-    totalExpenses.innerHTML = this.expense + this.inputVal;
-  }
-  // Adding a card to the page
-  addCard() {
-    const html = `
+}
+
+// load data from local storage
+let data = [];
+let localData = JSON.parse(localStorage.getItem("data"));
+data = localData == null ? data : localData;
+let incomeSum = 0;
+let expenseSum = 0;
+data.forEach((card) => {
+  addCard(card);
+  incomeSum = +totalIncome.innerHTML + card.income;
+  expenseSum = +totalExpenses.innerHTML + +card.expenses;
+});
+
+totalIncome.innerHTML = +incomeSum;
+totalExpenses.innerHTML = +expenseSum;
+
+// Add card to page
+function addCard(card) {
+  const html = `
       <div class="card">
-        <p class="name">${this.inputUse}</p>
-        <p class="date">${this.inputDate}</p>
+        <p class="name">${card.use}</p>
+        <p class="date">${card.date}</p>
         <p class="amount">${
-          (this.inputType == "spent" ? "- " : "+ ") + this.inputVal
+          (card.type === "earned" ? "+ " : "- ") + card.amount
         }</p>
       </div>
-    `;
-    // adding card at the beginning of the section
-    cards.insertAdjacentHTML("afterbegin", html);
-  }
+  `;
+  addCardPage.insertAdjacentHTML("beforeend", html);
 }
 
-// Bring up add new item
+// Add card to page through button
 addBtn.addEventListener("click", function () {
-  addCardPage.classList.remove("hidden");
+  popup.classList.remove("hidden");
 });
 
-// Close the add new card
-cancelBtn.addEventListener("click", function () {
-  cleanUp();
-});
-
-// Add item on page
+// add item
 okBtn.addEventListener("click", function () {
-  // set date to current day if not added
-  const inputDate = date.value === "" ? currentDate() : date.value;
-  // check if amount and name are avail, then create the object
-  if (!moneyAdded.value == "" && !use.value == "") {
-    const data = new Info(
-      type.value,
-      inputDate,
-      +moneyAdded.value,
-      use.value,
-      +totalIncome.innerHTML,
-      +totalExpenses.innerHTML
-    );
-
-    dataArray.push(data);
-
-    // call function to update vals
-    if (data.inputType === "spent") {
-      data.addExpense();
-    } else if (data.inputType === "earned") {
-      data.addIncome();
-    }
-    // call function to create the card
-    data.addCard();
-  } else alert("Please input all infomation!");
-  // reset all values on closing
-  cleanUp();
+  if (moneyAdded.value == "") {
+    alert("Please enter the amount");
+  } else if (use.value == "") {
+    alert("Please enter the use");
+  } else {
+    const info = new cardData();
+    info.date = date.value === "" ? currentDate() : date.value;
+    info.amount = +moneyAdded.value;
+    info.type = type.value;
+    info.use = use.value;
+    info.income = +totalIncome.innerHTML;
+    info.expenses = +totalExpenses.innerHTML;
+    info.updateTotals();
+    data.push(info);
+    const stringfyied = JSON.stringify(data);
+    localStorage.setItem("data", stringfyied);
+    addCard(info);
+    closePopup();
+  }
 });
 
-//Clean up all values
-function cleanUp() {
-  type.value = "";
-  date.value = "";
-  moneyAdded.value = "";
-  use.value = "";
-  addCardPage.classList.add("hidden");
-}
+// close popup and clear data
+cancelBtn.addEventListener("click", function () {});
 
 // Get current date
 const currentDate = function () {
@@ -106,33 +99,17 @@ const currentDate = function () {
   const dd = String(today.getDate());
   const mm = String(today.getMonth() + 1);
   const yyyy = today.getFullYear();
-  return dd + "/" + mm + "/" + yyyy;
+  return yyyy + "-" + mm + "-" + dd;
 };
 
-// save data function
-saveBtn.addEventListener("click", function () {
-  dataArray = JSON.stringify(dataArray);
-  localStorage.setItem("data", dataArray);
-});
+// close popup
+function closePopup() {
+  date.value = "";
+  moneyAdded.value = "";
+  use.value = "";
+  popup.classList.add("hidden");
+}
 
-// deleting info
 resetBtn.addEventListener("click", function () {
   localStorage.removeItem("data");
 });
-
-// Loading information
-let newData = localStorage.getItem("data");
-newData = JSON.parse(newData);
-if (newData.length > 0) {
-  newData.forEach((item) => {
-    item = new Info(
-      item.inputType,
-      item.inputDate,
-      item.inputVal,
-      item.inputUse,
-      item.income,
-      item.expense
-    );
-    item.addCard();
-  });
-}
