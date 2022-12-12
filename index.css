@@ -110,37 +110,20 @@ main {
   font-size: 1.8rem;
 }
 
-.add__btn,
-.add__btn1 {
+.addBtns {
   position: fixed;
-  top: 85vh;
-  left: 50%;
-  transform: translateX(-50%);
-  border: none;
-  background-color: var(--main-color);
-  padding: 1.5rem 2rem;
-  box-shadow: 0 1rem 1.5rem rgba(0, 0, 0, 0.7);
-  border-radius: 10px;
-  font-size: 3rem;
-  color: var(--main-text-color);
-  cursor: pointer;
-  transition: all 0.2s;
-  z-index: 100;
+  top: 90%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
-.add__btn-1 {
-  left: 40%;
-  padding: 1rem 1.5rem;
+.addBtn {
+  margin: 0 2rem;
 }
 
-.add__btn-2 {
-  left: 60%;
-  padding: 1rem 1.5rem;
-}
-
-.add__btn:hover {
-  box-shadow: 0 1.5rem 2rem rgba(0, 0, 0, 0.7);
-  padding: 1.5rem 3rem;
+.addBtn:hover {
+  padding: 1.2rem 3rem;
 }
 
 .add_card {

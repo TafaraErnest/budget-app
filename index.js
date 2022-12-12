@@ -1,5 +1,5 @@
 // Defining variables
-const addBtn = document.querySelector(".add__btn");
+const addBtn = document.querySelector(".addBtn");
 const addCardPage = document.querySelector(".add_card");
 const cancelBtn = document.querySelector(".cancelBtn");
 const okBtn = document.querySelector(".okBtn");
@@ -10,8 +10,8 @@ const use = document.querySelector("#use");
 const totalIncome = document.querySelector("#totalIncome");
 const totalExpenses = document.querySelector("#totalExpenses");
 const cards = document.querySelector(".cards");
-const saveBtn = document.querySelector(".add__btn-1");
-const resetBtn = document.querySelector(".add__btn-2");
+const saveBtn = document.querySelector(".saveBtn");
+const resetBtn = document.querySelector(".resetBtn");
 
 // saving data on local storage
 let dataArray = [];
